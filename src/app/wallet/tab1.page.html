@@ -1,0 +1,77 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>
+      WALLET
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <ng-template #new [ngIf]="!address" [ngIfElse]="logged">
+    <ion-grid>
+        <ion-row>
+            <ion-col>
+                <ion-item>
+                    <ion-label position="stacked">Email {{emailError}}</ion-label>
+                    <ion-input type="email" placeholder="john@gmail.com" required="true" [(ngModel)]="email"></ion-input>
+                </ion-item>
+            </ion-col>
+        </ion-row>
+
+        <ion-row>
+            <ion-col>
+                <ion-item>
+                  <ion-label position="stacked">Password {{passwordError}}</ion-label>
+                  <ion-input type="password" placeholder="password" required="true" [(ngModel)]="password"></ion-input>
+                </ion-item>
+          </ion-col>
+        </ion-row>
+
+        <ion-row>
+            <ion-col>
+                <ion-item>
+                    <ion-label position="stacked">Repeat Password {{passwordError}}</ion-label>
+                    <ion-input type="password" placeholder="password" required="true" [(ngModel)]="confirmPassword"></ion-input>
+                </ion-item>
+            </ion-col>
+        </ion-row>
+
+        <ion-row>
+                <ion-col>
+                    <ion-item>
+                            <ion-button (click)="createWallet(email, password, confirmPassword)">Create Wallet</ion-button>
+                    </ion-item>
+                </ion-col>
+        </ion-row>
+    </ion-grid>
+    </ng-template>
+    
+    <ng-template #logged>
+        <ion-card>
+                <ion-card-header class="ion-text-center ion-text-uppercase" color="primary">
+                  <ion-card-subtitle>Available Funds</ion-card-subtitle>
+                  <ion-card-title>Wallet</ion-card-title>
+                </ion-card-header>
+              
+                <ion-card-content>
+                        <ion-list>
+                                <ion-list-header class="ion-text-center">
+                                  <ion-label color="primary"><h2>Address: {{address}}</h2></ion-label>
+                                </ion-list-header>
+                                <ion-item>ETH Balance: {{balances.ETH}}</ion-item>
+                                <ion-item>DAI Balance: {{balances.DAI}}</ion-item>
+                                <ion-item>BAT Balance: {{balances.BAT}}</ion-item>
+                                <ion-item>USDC Balance: {{balances.USDC}}</ion-item>
+                              </ion-list>
+                </ion-card-content>
+        </ion-card>
+    </ng-template>
+    <ion-grid>
+        <ion-row>
+            <ion-col> <ion-button class="buttonWallet">Send</ion-button> </ion-col>
+            <ion-col><ion-button class="buttonWallet">Receive</ion-button></ion-col>
+            <ion-col><ion-button class="buttonWallet">Fund</ion-button></ion-col>
+        </ion-row>
+    </ion-grid>
+</ion-content>
+
